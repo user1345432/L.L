@@ -1,12 +1,16 @@
 package org.example;
 
+import com.sun.scenario.effect.impl.sw.java.JSWBlend_GREENPeer;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -21,7 +25,8 @@ import java.util.stream.Collectors;
 
 public class Main extends Application {
 
-    Pane root = new Pane();
+
+   BorderPane root = new BorderPane();
     Sprite player = new Sprite("player", 30, 40, Color.DARKGOLDENROD, 200, 500);
     int lives = 9;
     Text lives_text = new Text(380, 580,Integer.toString(lives));
@@ -206,6 +211,12 @@ public class Main extends Application {
         });
 
         stage.setScene(scene);
+        Canvas canvas=new Canvas(600,800);
+        GraphicsContext context= canvas.getGraphicsContext2D();
+        root.setCenter(canvas);
+        context.setFill(Color.GOLD);
+        context.fillRect(0,0,600,800);
         stage.show();
+
     }
 }
